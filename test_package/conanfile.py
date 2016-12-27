@@ -9,7 +9,8 @@ class GrpcReuseConan(ConanFile):
     version = '1.0.1'
     username = 'sourcedelica'                            # FIXME
     channel = 'testing'                                  # FIXME
-    requires = "grpc/%s@sourcedelica/testing" % version, "Protobuf/3.0.2@sourcedelica/testing"
+    requires = "grpc/%s@sourcedelica/testing" % version, \
+               "Protobuf/3.0.2@sourcedelica/testing"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
 
