@@ -7,7 +7,7 @@ class GrpcConan(ConanFile):
     name = "grpc"
     version = "1.0.1"
 
-    url = "http://grpc.io"
+    url = "https://github.com/sourcedelica/conan-grpc"
     settings = "os", "compiler", "build_type", "arch"
     license = "Three-clause BSD"
     description = "RPC library from Google based on Protobuf"
