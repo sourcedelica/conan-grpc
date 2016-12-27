@@ -18,6 +18,7 @@ using helloworld::HelloRequest;
 using helloworld::HelloReply;
 using helloworld::Greeter;
 
+// Adapted from the gRPC helloworld example
 class GreeterClient {
 public:
     GreeterClient(std::shared_ptr<Channel> channel)
@@ -94,6 +95,7 @@ int main(int argc, char** argv) {
     std::string user("world");
     std::string reply = greeter.SayHello(user);
     std::cout << "Greeter received: " << reply << std::endl;
+
     if (reply != "Hello world") {
         throw std::runtime_error("Did not get expected reply from server");
     }
