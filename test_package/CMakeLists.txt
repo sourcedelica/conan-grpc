@@ -3,10 +3,6 @@ cmake_minimum_required(VERSION 3.5.1)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-if(NOT APPLE AND NOT WIN32)
-  set(EXTRA_FLAGS "-pthread")
-endif()
-
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
@@ -33,7 +29,12 @@ include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
 add_executable(greeter_combined greeter_combined.cc ${hw_proto_srcs} ${hw_grpc_srcs})
 
+if(NOT APPLE AND NOT WIN32)
+  set(EXTRA_LINK_FLAGS "-pthread")
+endif()
+
 target_link_libraries(greeter_combined PRIVATE
     -L${CONAN_LIB_DIRS_GRPC} grpc++_unsecure
     -L${CONAN_LIB_DIRS_PROTOBUF} ${CONAN_LIBS_PROTOBUF}
-    -L${CONAN_LIB_DIRS_ZLIB} ${CONAN_LIBS_ZLIB})
+    -L${CONAN_LIB_DIRS_ZLIB} ${CONAN_LIBS_ZLIB}
+    ${EXTRA_LINK_FLAGS})
