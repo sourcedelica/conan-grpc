@@ -1,7 +1,7 @@
 project(GrpcReusePackage)
 cmake_minimum_required(VERSION 3.5.1)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
@@ -34,7 +34,7 @@ if(NOT APPLE AND NOT WIN32)
 endif()
 
 target_link_libraries(greeter_combined PRIVATE
-    -L${CONAN_LIB_DIRS_GRPC} grpc++_unsecure
+    -L${CONAN_LIB_DIRS_GRPC} grpc++_unsecure grpc gpr
     -L${CONAN_LIB_DIRS_PROTOBUF} ${CONAN_LIBS_PROTOBUF}
     -L${CONAN_LIB_DIRS_ZLIB} ${CONAN_LIBS_ZLIB}
     ${EXTRA_LINK_FLAGS})
