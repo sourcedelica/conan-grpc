@@ -25,6 +25,7 @@ class GrpcConan(ConanFile):
     def source(self):
         self.run("git clone https://github.com/grpc/grpc.git --branch v%s --depth 1" 
                  % self.version)
+        # TODO - is there a reliable way to get shallow submodules to work?
         self.run("git submodule update --init", cwd=self._source_dir)
         shutil.copy("change_dylib_names.sh", self._source_dir)
 
