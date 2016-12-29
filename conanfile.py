@@ -23,8 +23,8 @@ class GrpcConan(ConanFile):
                 raise ConanException("You must use the setting compiler.libcxx=libstdc++11")
 
     def source(self):
-        self.run("git clone https://github.com/grpc/grpc.git")
-        self.run("git checkout v%s" % self.version, cwd=self._source_dir)
+        self.run("git clone https://github.com/grpc/grpc.git --branch v%s --depth 1" 
+                 % self.version)
         self.run("git submodule update --init", cwd=self._source_dir)
         shutil.copy("change_dylib_names.sh", self._source_dir)
 
